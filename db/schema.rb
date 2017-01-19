@@ -12,13 +12,16 @@
 
 ActiveRecord::Schema.define(version: 20170119225908) do
 
+  # These are extensions that must be enabled in order to support this database
+  enable_extension "plpgsql"
+
   create_table "categories", force: :cascade do |t|
     t.string   "name",                                              null: false
     t.decimal  "price",      precision: 8, scale: 4
     t.boolean  "food",                               default: true
     t.datetime "created_at",                                        null: false
     t.datetime "updated_at",                                        null: false
-    t.index ["name"], name: "index_categories_on_name"
+    t.index ["name"], name: "index_categories_on_name", using: :btree
   end
 
   create_table "donations", force: :cascade do |t|
@@ -27,8 +30,8 @@ ActiveRecord::Schema.define(version: 20170119225908) do
     t.integer  "weight",      null: false
     t.datetime "created_at",  null: false
     t.datetime "updated_at",  null: false
-    t.index ["category_id"], name: "index_donations_on_category_id"
-    t.index ["donor_id"], name: "index_donations_on_donor_id"
+    t.index ["category_id"], name: "index_donations_on_category_id", using: :btree
+    t.index ["donor_id"], name: "index_donations_on_donor_id", using: :btree
   end
 
   create_table "donors", force: :cascade do |t|
@@ -36,7 +39,7 @@ ActiveRecord::Schema.define(version: 20170119225908) do
     t.boolean  "trucking_company", default: false
     t.datetime "created_at",                       null: false
     t.datetime "updated_at",                       null: false
-    t.index ["name"], name: "index_donors_on_name"
+    t.index ["name"], name: "index_donors_on_name", using: :btree
   end
 
   create_table "friendly_id_slugs", force: :cascade do |t|
@@ -45,10 +48,10 @@ ActiveRecord::Schema.define(version: 20170119225908) do
     t.string   "sluggable_type", limit: 50
     t.string   "scope"
     t.datetime "created_at"
-    t.index ["slug", "sluggable_type", "scope"], name: "index_friendly_id_slugs_on_slug_and_sluggable_type_and_scope", unique: true
-    t.index ["slug", "sluggable_type"], name: "index_friendly_id_slugs_on_slug_and_sluggable_type"
-    t.index ["sluggable_id"], name: "index_friendly_id_slugs_on_sluggable_id"
-    t.index ["sluggable_type"], name: "index_friendly_id_slugs_on_sluggable_type"
+    t.index ["slug", "sluggable_type", "scope"], name: "index_friendly_id_slugs_on_slug_and_sluggable_type_and_scope", unique: true, using: :btree
+    t.index ["slug", "sluggable_type"], name: "index_friendly_id_slugs_on_slug_and_sluggable_type", using: :btree
+    t.index ["sluggable_id"], name: "index_friendly_id_slugs_on_sluggable_id", using: :btree
+    t.index ["sluggable_type"], name: "index_friendly_id_slugs_on_sluggable_type", using: :btree
   end
 
   create_table "users", force: :cascade do |t|
@@ -62,7 +65,9 @@ ActiveRecord::Schema.define(version: 20170119225908) do
     t.string   "last_sign_in_ip"
     t.datetime "created_at",                       null: false
     t.datetime "updated_at",                       null: false
-    t.index ["email"], name: "index_users_on_email", unique: true
+    t.index ["email"], name: "index_users_on_email", unique: true, using: :btree
   end
 
+  add_foreign_key "donations", "categories"
+  add_foreign_key "donations", "donors"
 end
