@@ -17,10 +17,14 @@ gem 'jquery-rails'
 gem 'turbolinks', '~> 5'
 gem 'jbuilder', '~> 2.5'
 gem 'react-rails', '~> 1.0'
+gem 'simple_form'
 
 group :development, :test do
   gem 'pry'
   gem 'pry-byebug'
+  gem 'rspec-rails'
+  gem 'factory_girl_rails'
+  gem 'faker'
 end
 
 group :development do
