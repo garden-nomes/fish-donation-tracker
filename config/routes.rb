@@ -2,6 +2,14 @@ Rails.application.routes.draw do
   resources :donations
   resources :categories
   resources :donors
+
   devise_for :users
-  # For details on the DSL available within this file, see http://guides.rubyonrails.org/routing.html
+  devise_scope :user do
+    unauthenticated :user do
+      root to: 'devise/sessions#new', as: :unathenticated_root
+    end
+    authenticated :user do
+      root to: 'donations#index', as: :authenticated_root
+    end
+  end
 end
