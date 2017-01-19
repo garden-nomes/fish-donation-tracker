@@ -1,0 +1,15 @@
+p#notice = notice
+
+p
+  strong Donor:
+  = @donation.donor
+p
+  strong Category:
+  = @donation.category
+p
+  strong Weight:
+  = @donation.weight
+
+= link_to 'Edit', edit_donation_path(@donation)
+'|
+= link_to 'Back', donations_path
