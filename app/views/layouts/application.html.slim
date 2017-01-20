@@ -1,0 +1,13 @@
+doctype html
+html
+  head
+    title Fish Donation Tracker
+    = csrf_meta_tags
+    = stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track': 'reload'
+    = javascript_include_tag 'application', 'data-turbolinks-track': 'reload'
+
+  body
+    .container
+      .row
+        .col-md-10.col-md-offset-1
+          == yield
