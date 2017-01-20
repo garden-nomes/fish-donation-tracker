@@ -7,6 +7,7 @@ git_source(:github) do |repo_name|
 end
 
 gem 'bootstrap-sass', '~> 3.3.6'
+gem 'twitter-typeahead-rails', github: "yourabi/twitter-typeahead-rails"
 gem 'coffee-rails', '~> 4.2'
 gem 'devise'
 gem 'friendly_id', '~> 5.1.0'
@@ -25,7 +26,7 @@ gem 'uglifier', '>= 1.3.0'
 group :development, :test do
   gem 'factory_girl_rails'
   gem 'faker'
-  gem 'pry'
+  gem 'pry-rails'
   gem 'pry-byebug'
   gem 'rspec-rails'
 end
