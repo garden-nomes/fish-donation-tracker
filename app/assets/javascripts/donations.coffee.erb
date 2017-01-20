@@ -1,0 +1,18 @@
+# Place all the behaviors and hooks related to the matching controller here.
+# All this logic will automatically be available in application.js.
+# You can use CoffeeScript in this file: http://coffeescript.org/
+
+bloodhound = new Bloodhound
+    local: [<%= Donor.all.map { |d| "\"#{d.name}\"" }.join(",") %>],
+    queryTokenizer: Bloodhound.tokenizers.whitespace,
+    datumTokenizer: Bloodhound.tokenizers.whitespace
+
+$ ->
+    $ '#donation_donor'
+        .typeahead
+            hint: true,
+            minLength: 1,
+            highlight: true
+        ,
+            name: 'donors'
+            source: bloodhound

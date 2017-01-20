@@ -9,7 +9,7 @@ Rails.application.routes.draw do
       root to: 'devise/sessions#new', as: :unathenticated_root
     end
     authenticated :user do
-      root to: 'donations#index', as: :authenticated_root
+      root to: 'donations#new', as: :authenticated_root
     end
   end
 end
