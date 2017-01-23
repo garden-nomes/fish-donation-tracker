@@ -4,7 +4,7 @@ class Donation < ApplicationRecord
 
   delegate :trucking_company, to: :donor, allow_nil: true
 
-  validates :weight, presence: true
+  validates :weight, :donor, :category, presence: true
   validates_associated :donor, :category
 
   def donor=(value)
@@ -12,6 +12,8 @@ class Donation < ApplicationRecord
   end
 
   def trucking_company=(value)
+    return value unless donor
     donor.update(trucking_company: value)
+    value
   end
 end
