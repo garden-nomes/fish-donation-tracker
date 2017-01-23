@@ -11,5 +11,5 @@
 end
 
 ["Diapers", "Toiletries", "Pet Food", "Other"].each do |item|
-  Category.create!(name: item, food: true)
+  Category.create!(name: item, food: false)
 end
