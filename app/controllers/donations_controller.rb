@@ -12,7 +12,7 @@ class DonationsController < ApplicationController
     @donation = Donation.new(donation_params)
 
     if @donation.save
-      flash[:success] = "Donation logged!"
+      flash[:success] = "Saved!"
     else
       flash[:error] = @donation.errors.full_messages.to_sentence
     end
