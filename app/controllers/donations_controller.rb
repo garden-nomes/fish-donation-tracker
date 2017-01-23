@@ -10,13 +10,16 @@ class DonationsController < ApplicationController
   # POST /donations
   def create
     @donation = Donation.new(donation_params)
+    @donations = Donation.all
+    @categories = Category.all
+    @donors = Donor.all
 
     if @donation.save
       flash[:success] = "Saved!"
+      render :new
     else
-      flash[:error] = @donation.errors.full_messages.to_sentence
+      render :new
     end
-    redirect_to new_donation_path
   end
 
   private

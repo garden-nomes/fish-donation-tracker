@@ -10,10 +10,12 @@ en:
       # html: '<abbr title="required">*</abbr>'
     error_notification:
       default_message: "Please review the problems below:"
+    labels:
+      donation:
+        weight: "Weight (lbs)"
     placeholders:
       donation:
-        donor: "Donor"
-        weight: "lbs"
+        donor: "Start typing to bring up list..."
     # Examples
     # labels:
     #   defaults:

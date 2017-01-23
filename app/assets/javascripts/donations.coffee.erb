@@ -3,7 +3,7 @@
 # You can use CoffeeScript in this file: http://coffeescript.org/
 
 bloodhound = new Bloodhound
-    local: [<%= Donor.all.map { |d| "\"#{d.name}\"" }.join(",") %>],
+    local: [<%= Donor.all.map { |d| "\"#{d.name}\"" }.join(',') %>],
     queryTokenizer: Bloodhound.tokenizers.whitespace,
     datumTokenizer: Bloodhound.tokenizers.whitespace
 
