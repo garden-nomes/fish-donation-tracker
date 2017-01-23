@@ -1,16 +1,20 @@
 #new-donation-form
-  .text-center
-    = simple_form_for @donation, html: { class: 'form-inline' } do |f|
-      = f.input :donor, label: false, input_html: { data: { provide: 'typeahead' } }
-      = f.input :trucking_company, as: :boolean
-      = f.input :category,
-        as: :grouped_select,
-        collection: [['food', ['meat', 'dairy', 'baked goods']], ['non-food', ['diapers', 'toiletries']]],
-        group_method: :last,
-        label: false,
-        prompt: "Donation type"
-      = f.input :weight, label: false
-      = f.button :submit, 'Save', input_html: { class: 'btn-primary' }
+  = simple_form_for @donation, html: { class: '--form-inline' } do |f|
+    .row
+      .col-sm-5
+        = f.input :donor, label: false, input_html: { data: { provide: 'typeahead' } }
+        = f.input :trucking_company, as: :boolean
+      .col-sm-4
+        = f.input :category_id,
+          as: :grouped_select,
+          collection: group_collection_by_food(@categories),
+          group_method: :last,
+          label: false,
+          prompt: "Donation type"
+      .col-sm-2
+        = f.input :weight, label: false
+      .col-sm-1
+        = f.button :submit, 'Save', input_html: { class: 'btn-primary' }
 #recent-donations-table
   table.table.table-striped
     thead
@@ -25,6 +29,5 @@
       tr
         td= d.donor
         td= d.category
-        td= d.weight
-          | lbs
+        td= "#{d.weight} lbs"
         td= d.created_at.to_formatted_s(:long_ordinal)
