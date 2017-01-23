@@ -11,4 +11,7 @@ html
       .row
         .col-md-10.col-md-offset-1
           = render partial: 'layouts/flash_messages'
+          ul.nav.nav-pills
+            li= link_to "Log Donations", new_donation_path
+            li= link_to "Categories", categories_path
           == yield
