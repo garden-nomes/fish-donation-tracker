@@ -19,16 +19,21 @@
   table.table.table-striped
     thead
       tr
-        th colspan=4
+        th colspan=5
           h3 Recent donations
       tr
         th Donor
         th Category
         th Weight
         th Logged
+        th Actions
     - @donations.order(created_at: :desc).take(10).each do |d|
       tr
         td= d.donor
         td= d.category
         td= "#{d.weight} lbs"
         td= l d.created_at, format: :short
+        td
+          .btn-group.btn-group-xs
+            = link_to 'edit', edit_donation_path(d), class: 'btn btn-default'
+            = link_to 'destroy', d, method: :delete, class: 'btn btn-danger'
