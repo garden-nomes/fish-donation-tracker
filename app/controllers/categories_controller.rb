@@ -1,5 +1,5 @@
 class CategoriesController < ApplicationController
-  before_action :set_category, only: [:new, :show, :edit, :update]
+  before_action :set_category, only: [:new, :show, :edit, :update, :destroy]
 
   # GET /categories
   def index
@@ -23,6 +23,7 @@ class CategoriesController < ApplicationController
 
   # GET /category/:id
   def show
+    redirect_to action: 'index'
   end
 
   # GET /category/:id/edit
@@ -39,6 +40,17 @@ class CategoriesController < ApplicationController
     end
   end
 
+  # DELETE /category/:id
+  def destroy
+    if @category.destroy
+      flash[:success] = "Saved!"
+    else
+      flash[:error] = "Unable to delete category."
+    end
+
+    redirect_to action: 'index'
+  end
+
   private
 
   def category_params
@@ -46,6 +58,6 @@ class CategoriesController < ApplicationController
   end
 
   def set_category
-    @category = Category.find(params[:category][:id])
+    @category = Category.find(params[:id])
   end
 end
