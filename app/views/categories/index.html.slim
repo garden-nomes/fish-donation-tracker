@@ -17,8 +17,9 @@ table.table.table-striped
           td= "$#{category.price}"
           td
             .btn-group.btn-group-xs
-              = link_to "edit", edit_category_path(category), class: "btn btn-default"
-              = link_to "destroy", category, method: :delete,
-                class: category.donations.empty? ? "btn btn-danger" : "btn btn-danger disabled"
-p.small.text-warning.text-center
+              = link_to fa_icon('pencil-square-o'), edit_category_path(category), class: "btn btn-warning"
+              = link_to fa_icon('trash'), category, method: :delete,
+                class: category.donations.empty? ? "btn btn-danger" : "btn btn-danger disabled",
+                data: { confirm: "Are you sure you want to delete #{category.name}?" }
+p.small.text-danger.text-center
   | *categories with logged donations cannot be destroyed
