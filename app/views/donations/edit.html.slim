@@ -1,11 +1,3 @@
 h2 Edit Donation
-= simple_form_for @donation, html: { class: '--form-inline' } do |f|
-  = f.input :donor, input_html: { data: { provide: 'typeahead' } }
-  = f.input :category_id,
-    as: :grouped_select,
-    collection: group_collection_by_food(@categories),
-    group_method: :last,
-    required: true,
-    prompt: "Donation type"
-  = f.input :weight
-  = f.button :submit, 'Save', input_html: { class: 'btn-primary' }
+= render 'form', donation: @donation
+= link_to 'back', :back || '/donations', class: 'btn btn-default btn-sm'

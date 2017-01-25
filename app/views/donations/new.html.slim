@@ -1,20 +1,5 @@
 #new-donation-form
-  = simple_form_for @donation, html: { class: '--form-inline' } do |f|
-    .row
-      .col-sm-6
-        = f.input :donor, input_html: { data: { provide: 'typeahead' } }
-        = f.input :trucking_company, as: :boolean
-      .col-sm-4
-        = f.input :category_id,
-          as: :grouped_select,
-          collection: group_collection_by_food(@categories),
-          group_method: :last,
-          required: true,
-          prompt: "Donation type"
-      .col-sm-2
-        = f.input :weight
-        .text-right
-          = f.button :submit, 'Save', input_html: { class: 'btn-primary' }
+  = render 'form', donation: @donation
 #recent-donations-table
   table.table.table-striped
     thead
