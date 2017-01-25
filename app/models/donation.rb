@@ -7,6 +7,9 @@ class Donation < ApplicationRecord
   validates :weight, :donor, :category, presence: true
   validates_associated :donor, :category
 
+  scope :food, -> { joins(:category).where(categories: { food: true }) }
+  scope :non_food, -> { joins(:category).where(categories: { food: false }) }
+
   def donor=(value)
     write_attribute :donor_id, Donor.find_or_create_by(name: value).id
   end
