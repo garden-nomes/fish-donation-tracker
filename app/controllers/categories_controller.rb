@@ -1,5 +1,5 @@
 class CategoriesController < ApplicationController
-  before_action :set_category, only: [:new, :show, :edit, :update, :destroy]
+  before_action :set_category, only: [:show, :edit, :update, :destroy]
 
   # GET /categories
   def index
@@ -8,16 +8,18 @@ class CategoriesController < ApplicationController
 
   # GET /categories/new
   def new
+    @category = Category.new
   end
 
   # POST /categories
   def create
     @category = Category.new(category_params)
     if @category.save
+      flash[:success] = "Category created!"
       redirect_to categories_path
     else
-      flash[:error] = @category.errors.full_messages.to_sentence
-      redirect_to new_category_path
+      flash[:error] = "Unable to create category."
+      render :new
     end
   end
 
@@ -33,10 +35,11 @@ class CategoriesController < ApplicationController
   # PATCH /category/:id
   def update
     if @category.update(category_params)
+      flash[:success] = "Category updated!"
       redirect_to categories_path
     else
-      flash[:error] = @category.errors.full_messages.to_sentence
-      redirect_to edit_category_path(@category)
+      flash[:error] = "Unable to update category."
+      render :edit
     end
   end
 
