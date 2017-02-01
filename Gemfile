@@ -23,6 +23,9 @@ gem 'pg'
 gem 'turbolinks', '~> 5'
 gem 'uglifier', '>= 1.3.0'
 gem 'font-awesome-rails'
+gem 'rubyzip', '~> 1.1.0'
+gem 'axlsx', '2.1.0.pre'
+gem 'axlsx_rails'
 
 group :development, :test do
   gem 'factory_girl_rails'
