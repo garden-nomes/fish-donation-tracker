@@ -5,7 +5,6 @@ class ReportsController < ApplicationController
   end
 
   def git_report
-    logger.debug params
   end
 
   def set_start_and_end_time

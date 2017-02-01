@@ -3,7 +3,7 @@ Rails.application.routes.draw do
   resources :categories
   resources :donors
   get '/reports(/new)', to: 'reports#new'
-  get '/reports/gik', to: 'reports#gik_report'
+  get '/reports/gik', to: 'reports#gik_report', defaults: { format: 'xslx' }
 
   devise_for :users
   devise_scope :user do
