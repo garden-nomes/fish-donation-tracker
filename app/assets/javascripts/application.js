@@ -15,6 +15,7 @@
 //= require turbolinks
 //= require bootstrap-sprockets
 //= require twitter/typeahead
+//= require bootstrap-datepicker
 //= require react
 //= require react_ujs
 //= require components
