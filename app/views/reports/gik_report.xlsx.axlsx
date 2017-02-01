@@ -1,0 +1,17 @@
+wb = xlsx_package.workbook
+wb.add_worksheet(name: 'GIK Report') do |sheet|
+  sheet.add_row ['Donors', *Category.food, 'Total lbs food', *Category.non_food,
+                 'Total lbs non-food', 'Total']
+
+  Donor.all.find_each do |donor|
+    donations = donor.donations.where(created_at: @start_time..@end_time)
+    next unless donations.count > 0
+
+    row = [donor.name]
+    Category.food.find_each { |c| row << donations.where(category: c).sum(:weight) }
+    row << donations.food.sum(:weight)
+    Category.non_food.find_each { |c| row << donations.where(category: c).sum(:weight) }
+    row << donations.food.sum(:weight)
+    row << donations.sum(:weight)
+  end
+end

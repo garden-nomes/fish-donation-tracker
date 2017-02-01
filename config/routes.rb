@@ -2,6 +2,8 @@ Rails.application.routes.draw do
   resources :donations
   resources :categories
   resources :donors
+  get '/reports(/new)', to: 'reports#new'
+  get '/reports/gik', to: 'reports#gik_report'
 
   devise_for :users
   devise_scope :user do
